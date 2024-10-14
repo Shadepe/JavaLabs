@@ -10,12 +10,12 @@ import java.io.ObjectOutputStream;
 import java.io.FileInputStream;
 import java.io.ObjectInputStream;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class NumberAsArray implements Serializable{
-    private static final long serialVersionUID = 1L;
-    private static final Logger logger = LoggerFactory.getLogger(NumberAsArray.class);
+    // private static final long serialVersionUID = 1L;
+    private static final Logger logger = LogManager.getLogger(NumberAsArray.class);
     private int[] numberArray;
 
     public int[] getArray(){
@@ -35,8 +35,8 @@ public class NumberAsArray implements Serializable{
         this.numberArray = numbers;   
     }
 
+    // Empty constuctor
     public NumberAsArray(){
-
     }
 
     public NumberAsArray(int[] numbers) throws InvalidInputException{
