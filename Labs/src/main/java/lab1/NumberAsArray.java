@@ -83,7 +83,7 @@ public class NumberAsArray implements Serializable{
         try{
             return Integer.toString(this.asNumber());
         } catch (NoValueException e){
-            System.out.println("AsNumber error" + e.getMessage());
+            logger.debug("AsNumber error" + e.getMessage());
             return "";
         }
     }
@@ -110,11 +110,11 @@ public class NumberAsArray implements Serializable{
         outStream.defaultWriteObject();
         outStream.writeInt(numberArray.length);
 
-        // System.out.println("Write:");
-        // System.out.println("\t"+numberArray.length);
+        logger.debug("Write:");
+        logger.debug("\t"+numberArray.length);
 
         for (int i : numberArray) {
-            // System.out.println("\t"+i);
+            logger.debug("\t"+i);
             outStream.writeInt(i);
         }
     }
@@ -124,12 +124,12 @@ public class NumberAsArray implements Serializable{
         int length = inStream.readInt();
         numberArray = new int[length];
         
-        // System.out.println("Read:");
-        // System.out.println("\t"+length);
+        logger.debug("Read:");
+        logger.debug("\t"+length);
 
         for (int i = 0; i < length; i++) {
             numberArray[i] = inStream.readInt();
-            // System.out.println("\t"+numberArray[i]);
+            logger.debug("\t"+numberArray[i]);
         }
     }
 

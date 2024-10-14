@@ -1,0 +1,6 @@
+Labs/target/
+
+*.class
+*.jar
+*.war
+*.log
