@@ -1,7 +1,7 @@
 package lab1;
 
 import java.io.Serializable;
-
+import java.util.ArrayList;
 import java.io.IOException;
 
 import java.io.FileOutputStream;
@@ -38,7 +38,38 @@ public class NumberAsArray implements Serializable{
     // Empty constuctor
     public NumberAsArray(){
     }
+    public NumberAsArray(int number) throws InvalidInputException{
+        ArrayList<Integer> temp = new ArrayList<Integer>();
+        if (number <= 0){
+            throw new InvalidInputException("Number is less then 0");
+        }
 
+        if (this.isSimple(number)){
+            temp.add(number);
+            this.numberArray = temp.stream().mapToInt(n -> n).toArray();
+            return;
+        }
+        int numberCopy = number;
+        for(int i=2; i < numberCopy/2; i++){
+            if (number == 1){
+                this.numberArray = temp.stream().mapToInt(n -> n).toArray();                
+                return;
+            }
+            
+            if (!this.isSimple(i)){
+                continue;
+            }
+            
+            if( number%i == 0 ){
+                logger.debug(i);      
+                number = number/i;
+                temp.add(i);
+                i -= 1;
+            }
+        }
+
+        throw new InvalidInputException("Invalid number");
+    }
     public NumberAsArray(int[] numbers) throws InvalidInputException{
         for (int number : numbers) {
             if (number <= 0){
