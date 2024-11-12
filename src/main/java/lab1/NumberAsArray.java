@@ -14,9 +14,9 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class NumberAsArray implements Serializable{
-    // private static final long serialVersionUID = 1L;
-    private static final Logger logger = LogManager.getLogger(NumberAsArray.class);
+    transient private static final Logger logger = LogManager.getLogger(NumberAsArray.class);
     private int[] numberArray;
+    // private char[] test = {'t','e','s','t'};
 
     public int[] getArray(){
         return this.numberArray;
@@ -138,7 +138,7 @@ public class NumberAsArray implements Serializable{
     }
 
     private void writeObject(ObjectOutputStream outStream)throws IOException {
-        outStream.defaultWriteObject();
+        // outStream.defaultWriteObject();
         outStream.writeInt(numberArray.length);
 
         logger.debug("Write:");
@@ -148,10 +148,11 @@ public class NumberAsArray implements Serializable{
             logger.debug("\t"+i);
             outStream.writeInt(i);
         }
+        // outStream.writeChars("test!");
     }
     
     private void readObject(ObjectInputStream inStream) throws IOException, ClassNotFoundException {
-        inStream.defaultReadObject();
+        // inStream.defaultReadObject();
         int length = inStream.readInt();
         numberArray = new int[length];
         

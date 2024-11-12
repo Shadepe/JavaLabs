@@ -6,7 +6,7 @@ public class Main {
             NumberAsArray NA1 = new NumberAsArray(5345);
             System.out.println("NA1: "+NA1);
 
-            int ns[] = {2,5,5};
+            int ns[] = {1,2,3,5,7};
             NumberAsArray NA2 = new NumberAsArray(ns);
             System.out.println("NA2: "+NA2);
 
